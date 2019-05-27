@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.zb.mapper.ProductMapper">
+  <resultMap type="Product" id="productBean">
+            <id column="pid" property="pid" />
+            <result column="pname" property="pname" />
+            <result column="ptype" property="ptype" />
+            <result column="poldprice" property="poldprice" />
+            <result column="pnewprice" property="pnewprice" />
+            <result column="pstarlevel" property="pstarlevel" />
+            <result column="plabel" property="plabel" />
+            <result column="pinfo" property="pinfo" />
+     
+            <!-- 一对多的关系 -->
+            <!-- property: 指的是集合属性的值, ofType：指的是集合中元素的类型 -->
+            <collection property="productImgs" ofType="ProductImg">
+                <id column="imgid" property="imgid" />
+                <result column="imgurl" property="imgurl" />             
+            </collection>
+        </resultMap>
+	     <select id="SearchByKey" resultMap="productBean">
+          SELECT * FROM products left join pimg on products.pid = pimg.pmid
+            WHERE pid in
+                <foreach item="item" index="index" collection="list"
+                    open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+    </select>   
+	</mapper>
+
