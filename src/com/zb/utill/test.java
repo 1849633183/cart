@@ -36,7 +36,7 @@ public class test {
 		 try {
 			 Userinfo userinfo=mapper.findByUsername("1");
 			System.out.println(userinfo);
-			System.out.println("ttt");
+			System.out.println("tteeeet");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
