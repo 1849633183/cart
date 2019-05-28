@@ -9,7 +9,7 @@ public class BCryptPasswordEncoderUtils {
     }
 
     public static void main(String[] args) {
-        String password="2";
+        String password="3";
         String pwd1 = encodePassword(password);
         String pwd2 = encodePassword(password);
         boolean f = bCryptPasswordEncoder.matches("2","{noop}1");

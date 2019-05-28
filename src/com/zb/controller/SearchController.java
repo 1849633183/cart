@@ -18,7 +18,7 @@ import com.zb.service.SearchService;
 import com.zb.utill.ElasticSearch;
 
 @Controller
-@RequestMapping("")
+@RequestMapping("/Search")
 public class SearchController{
 	@Autowired
 	SearchService searchService;

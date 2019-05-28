@@ -144,7 +144,7 @@
 									<div class="col-12 col-sm-12 col-md-7 col-lg-7">
 										<div class="header-search-area">
 											<div class="search-categories">
-												<form action="products" method="post">
+												<form action="Search/products" method="post">
 													<div class="search-form-input">
 														<select id="select" name="select" class="nice-select">
 															<option>所有商品</option>
