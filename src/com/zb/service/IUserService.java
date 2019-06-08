@@ -10,11 +10,12 @@ import com.zb.pojo.Userinfo;
 public interface IUserService extends UserDetailsService {
     List<Userinfo> findAll() throws Exception;
 
-    void save(Userinfo userInfo) throws Exception;
+    String save(Userinfo userInfo) throws Exception;
 
     Userinfo findById(String id) throws Exception;
 
     List<Role> findOtherRoles(String userId) throws Exception;
 
     void addRoleToUser(String userId, String[] roleIds);
+    boolean checkUser(Userinfo userinfo)  throws Exception;
 }

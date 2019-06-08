@@ -44,8 +44,8 @@
                                     <div class="row">
                                         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8 offset-xl-2">
                                             <div class="registration-form login-form mt-half">
-                                                <form id="form" action="#" method="post"  accept-charset="utf-8">
-                                                <input type="hidden" name="method" value="Register">
+                                                <form id="form" action="user/register" method="post"  accept-charset="utf-8">
+                                            
                                                     <div class="login-info mb-half">
                                                         <p>已有账号? <a href="login.jsp">点此登录!</a></p>
                                                     </div>
@@ -72,7 +72,7 @@
                                                     <div class="form-group row">
                                                         <label for="inputpassword" class="col-12 col-sm-12 col-md-4 col-form-label">重复密码</label>
                                                         <div class="col-12 col-sm-12 col-md-8 col-lg-8">
-                                                            <input type="password" id="bpassword" class="form-control" id="inputpassword" required="">
+                                                            <input type="password" id="bpassword" name ="repassword" class="form-control" id="inputpassword" required="">
                                                         </div>
                                                     </div>
                                                     
@@ -99,8 +99,9 @@
         </div>
         <!-- End of Main Content Wrapper -->
 
-         
-    <script type="text/javascript">
+     
+    
+ <script>
     $(function(){
     	$("#register").click(
     			function(){
@@ -112,22 +113,8 @@
     					{alert("两次密码不一致");}
     				else
     					{
-    				$.post(
-    						"User_User_Register", 
-    						$('#form').serialize(),
-    						function(result) {
-    							if("注册成功"==result)
-    								{
-    							alert(result);
-    								location.href="user/login.jsp";
-    								}
-    								else
-    									{
-    							alert(result+":用户已存在");
-    							console.log(result);
-    							}
-    						}
-    					);}
+    					form.submit();
+    				}
     				
     			});
     })
@@ -136,3 +123,35 @@
     <!-- Start of Footer -->
       <%@include file="../include/footer.jsp"%>
         <!-- End of Footer -->
+
+    <c:if test="${info!=null}">
+		<script type="text/javascript">
+		$.toast({
+			  text
+			 : "${info}",
+			  showHideTransition
+			 : 'slide',
+			  bgColor
+			 : 'pink',
+
+			  textColor
+			 : 'black',
+
+			  allowToastClose
+			 : false,
+
+			  hideAfter
+			 : 3000,
+
+			  stack
+			 : 3,
+
+			  textAlign
+			 : 'left',
+
+			  position
+			 : 'top-right'
+
+			})
+		</script>
+	</c:if>

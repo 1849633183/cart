@@ -120,6 +120,12 @@
 <!-- Main JS -->
 <script src="assets/js/main.js"></script>
 <script src="assets/js/jquery.lazyload.min.js"></script>
+  <script type="text/javascript" src="js/jquery.toast.js"></script>
+  <script type="text/javascript">
+function toast(info){
+		$.toast({ text: info,showHideTransition: 'slide',bgColor: 'pink',
+			textColor: 'black',allowToastClose: false, hideAfter: 1000,stack: 3,textAlign: 'left',position : 'top-right'})}
+		</script>
 <script type="text/javascript" charset="utf-8">
   $(function() {
       $("img").lazyload({effect: "fadeIn", threshold :80});
@@ -150,30 +156,13 @@
 			dataType : "json",
 			success : function(data) {
 				console.log(data);
-				console.log("ajax调用成功");
+				console.log("cartlistsession2html");
 				loadheadcart(data);
 
 			}
 		});
 	}
-	/* function getcartsum() {
-		var sum=0;
-		$.ajax({
-			url : "User_CartList_ajaxlist",
-			type : "post",
-			data : {},
-			dataType : "json",
-			success : function(data) {
-				
-				for ( var i in data) {
-					sum+=data[i].product.pnewprice*data[i].number;
-				}
-				
-			}
-		});
-		console.log(sum+"--------------");
-		return sum;
-	} */
+
 
 	function cartlist2session() {
 		$.ajax({
@@ -182,8 +171,9 @@
 			data : {},
 			dataType : "text",
 			success : function(data) {
+				
 				console.log(data);
-				console.log("ajax调用成功");
+				console.log("cartlist2session");
 				cartlistsession2html();
 			}
 		});
@@ -199,6 +189,7 @@
 			},
 			dataType : "text",
 			success : function(result) {
+				toast(result);
 				console.log(result);
 				if(result=="无用户")
 					window.location.href="user/login.jsp";
@@ -211,6 +202,7 @@
 	
 
 	function loadheadcart(cart) {
+	
 		var html="";
 		var size=0;
 		var sum=0;
@@ -232,13 +224,17 @@
 					size++;
 					sum+=cart[i].product.pnewprice*cart[i].number;
 		}
-	 if(size==0)
-		$(".count-style").fadeOut(1);
-	else 
-		{$(".count-style").fadeIn(1);
-		$(".count-style").text(size);}
+		console.log("loadheadcart"+size);
+	 if(size!=0)	
+		 {if(!($(".count-style").length > 0))
+		minicart.innerHTML+="<span class='count-style' >"+size+"</span>"}
+		else
+			{
+			console.log("等于零");
+			$(".count-style").remove();}
+		$(".count-style").text(size);
 		$("#headcart").html(html);		
-		$("#head-cart-sum span").each(function(){$(this).text(sum);});
+		$("#head-cart-sum span").each(function(){$(this).text("$"+sum);});
 	}
 	function removeCartItem(oiid){
 		$.ajax({
@@ -250,10 +246,9 @@
 			},
 			dataType : "text",
 			success : function(result) {
+				toast(result);
 				console.log(result);
-				setTimeout(function(){cartlistsession2html()},600);
-				
-
+				setTimeout(function(){cartlistsession2html()},600);				
 			}
 		});}
 	function updateCartItem(oiid,number){
@@ -268,17 +263,19 @@
 			},
 			dataType : "text",
 			success : function(result) {
+				toast(result);
 				console.log(result);
-				cartlistsession2html();
-				alert(result);
-				
-
+				cartlistsession2html();				
 			}
 		});
 		else
 			alert("非法输入！");
 		}
 </script>
+ <script type="text/javascript">
+        if("${SPRING_SECURITY_CONTEXT.authentication.principal.username}"!= "")
+         cartlist2session(); 
+        </script>
 <!-- <script>  
 //判断浏览器  
 var Browser=new Object();  

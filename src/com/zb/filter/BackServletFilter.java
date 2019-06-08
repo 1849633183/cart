@@ -30,7 +30,7 @@ public class BackServletFilter implements Filter {
 		uri = StringUtils.remove(uri, contextPath);
 		if (uri.startsWith("/User_")) {
 			String servletPath = StringUtils.substringBetween(uri, "_", "_") + "Servlet";
-		if (servletPath.equals("CartListServlet") && request.getSession().getAttribute("user") == null) {
+		/*if (servletPath.equals("CartListServlet") && request.getSession().getAttribute("user") == null) {
 			if(!StringUtils.isBlank(request.getHeader("x-requested-with"))&&request.getHeader("x-requested-with").equalsIgnoreCase("XMLHttpRequest")){
 				request.setCharacterEncoding("UTF-8");
 				response.setCharacterEncoding("UTF-8");
@@ -39,14 +39,14 @@ public class BackServletFilter implements Filter {
 			else {
 				response.sendRedirect("user/login.jsp");
 			}
-		}else{
+		}else{*/
 				String method = StringUtils.substringAfterLast(uri, "_");
 				System.out.println(servletPath + "ooooo" + method);
 				request.setAttribute("method", method);
 				req.getRequestDispatcher("/" + servletPath).forward(request, response);
 				return;
 		}
-		}
+		
 	System.out.println("BackServletFilter****************************************");
 
 		chain.doFilter(request, response);

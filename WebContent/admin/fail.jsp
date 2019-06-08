@@ -14,7 +14,7 @@
                     <div class="col-12 col-sm-12 col-md-12">
                         <nav class="breadcrumb">
                             <a class="breadcrumb-item" href="index.html">Home</a>
-                            <span class="breadcrumb-item active">404</span>
+                            <span class="breadcrumb-item active">登录失败</span>
                         </nav>
                     </div>
                 </div> <!-- end of row -->
@@ -32,8 +32,8 @@
                         <div class="col-md-12">
                             <div class="error-wrapper text-center">
                                 <div class="error-text">
-                                    <h1>404</h1>
-                                    <h2>页面找不到了</h2>                                   
+                                    <h1>登录失败</h1>
+                                    <h2>账号或者密码错误</h2>                                   
                                 </div>
                                 <div class="search-error">
                                     <form id="search-form" class="input-group" action="#">

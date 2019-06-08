@@ -8,7 +8,9 @@ import org.apache.ibatis.annotations.Select;
 
 import com.zb.pojo.Role;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Many;
+import org.apache.ibatis.annotations.Param;
 
 public interface RoleMapper {
 	 //根据用户id查询出所有对应的角色
@@ -20,6 +22,9 @@ public interface RoleMapper {
             @Result(property = "permissions",column = "id",javaType = java.util.List.class,many = @Many(select = "com.zb.mapper.PermissionMapper.findPermissionByRoleId"))
     })
     public List<Role> findRoleByUserId(String userId) throws Exception;
+    
+    @Insert("insert into user_role(uid,rid) values(#{uid},#{rid})")
+    public void saveRole(@Param("uid")String uid,@Param("rid")String rid) throws Exception;
 
 
 }

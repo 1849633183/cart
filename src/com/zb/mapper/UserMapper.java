@@ -25,12 +25,12 @@ public interface UserMapper {
             @Result(property = "Ustatus", column = "Ustatus"),
             @Result(property = "roles",column = "id",javaType = java.util.List.class,many = @Many(select = "com.zb.mapper.RoleMapper.findRoleByUserId"))
     })
-    public Userinfo findByUsername(String email) throws Exception;
+    public Userinfo findByEmail(String email) throws Exception;
 
     @Select("select * from users")
     List<Userinfo> findAll() throws Exception;
 
-    @Insert("insert into users(email,username,password,phoneNum,status) values(#{email},#{username},#{password},#{phoneNum},#{status})")
+    @Insert("insert into users(id,email,name,password,Ustatus) values(#{id},#{email},#{name},#{password},#{Ustatus})")
     void save(Userinfo userInfo) throws Exception;
 
     @Select("select * from users where id=#{id}")

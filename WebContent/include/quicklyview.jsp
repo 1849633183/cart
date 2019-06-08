@@ -128,9 +128,7 @@
         	                    dataType: "json",       	                   
         	                  success: function (data) {
         	                       result =data;
-        	                        console.log("ajax调用成功");
-        	                        cartlist2session();
-        	                        
+        	                        console.log("商品数据加载成功：quciklyview加载成功");        	                        
         	                     }
         	               });
 

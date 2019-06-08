@@ -10,9 +10,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+ <security:authentication property="principal.username" var="username"></security:authentication> 
+  ${username} <br>
 success html<br>
-<security:authentication property="principal.username"/>
-${user}
-<a href="logout.do">注销</a>
+<%-- <security:authentication property="principal.username"/> --%>
+
+${SPRING_SECURITY_CONTEXT.authentication.principal.username} 
+<a href="adminlogout.do">注销</a>
 </body>
 </html>

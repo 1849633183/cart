@@ -36,7 +36,7 @@
                                         <div class="row align-items-center no-gutters">
                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
                                                <div class="single-info">
-                                                   <p class="user-name">你好 <span>${user.name}</span> <br>(不是 ${user.name}? <a id="logout2" class="log-out" href="mycart/User_User_Logout">注销</a>)</p>
+                                                   <p class="user-name">你好 <span> ${SPRING_SECURITY_CONTEXT.authentication.principal.username} </span> <br>(不是  ${SPRING_SECURITY_CONTEXT.authentication.principal.username} ? <a id="logout2" class="log-out" href="user/userlogout.do">注销</a>)</p>
                                                </div>
                                            </div>
                                            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">

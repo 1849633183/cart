@@ -2,7 +2,9 @@ package com.zb.pojo;
 
 import java.util.List;
 
-public class Userinfo {
+
+
+public class Userinfo  {
 	private String id;
 	private String name;
 	private String password;
@@ -47,12 +49,12 @@ public class Userinfo {
 		this.email = email;
 	}
 
-	public int getStatus() {
+	public int getUstatus() {
 		return Ustatus;
 	}
 
-	public void setStatus(int Ustatus) {
-		Ustatus = Ustatus;
+	public void setUstatus(int Ustatus) {
+		this.Ustatus = Ustatus;
 	}
 	  public String getStatusStr() {
 	        //状态0 未开启 1 开启

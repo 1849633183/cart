@@ -1,7 +1,7 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -23,6 +23,9 @@
     ============================================ -->
 <link rel="shortcut icon" type="image/x-icon"
 	href="assets/images/favicon.ico">
+	
+ <link type="text/css" rel="stylesheet" href="css/jquery.toast.css">
+     
 
 
 <!-- CSS files
@@ -50,6 +53,7 @@
 <script src="assets/js/modernizr-2.8.3.min.js"></script>
 <!-- jQuery JS -->
 <script src="assets/js/jquery.1.12.4.min.js"></script>
+
 </head>
 
 <body>
@@ -79,7 +83,7 @@
 										class="col-12 col-sm-12 col-md-7 col-lg-6 order-md-2 order-lg-1">
 										<div class="top-search">
 											<p>
-												你可能想搜索: <a href="User_Productslist_list?page.type=手机">手机</a>,
+												你可能想搜索:<a href="User_Productslist_list?page.type=手机">手机</a>,
 												<a href="User_Productslist_list?page.type=电脑">电脑</a>, <a
 													href="User_Productslist_list?page.type=耳机">耳机</a>...
 											</p>
@@ -91,12 +95,13 @@
 											<li class="top-links list-inline-item">
 												<div class="btn-group">
 													<button class="btn-link dropdown-toggle" id="user">
-														<i class="fa fa-angle-down"></i>
+													   <c:if test="${SPRING_SECURITY_CONTEXT.authentication.principal.username eq null}">请登录</c:if>
+													   <c:if test="${!(SPRING_SECURITY_CONTEXT.authentication.principal.username eq null)}">${SPRING_SECURITY_CONTEXT.authentication.principal.username}</c:if> 
+													<i class="fa fa-angle-down"></i>
 													</button>
 													<div class="dropdown-menu">
 														<ul id="account">
-															<li><a href="user/login.jsp">登录</a></li>
-															<li><a href="user/register.jsp">注册</a></li>
+															${SPRING_SECURITY_CONTEXT.authentication.principal.username eq null?"<li ><a href='user/login.jsp'>登录</a></li><li ><a href='user/register.jsp'>注册</a></li>":" <li ><a href='user/my-account.jsp'>我的账户</a></li><li ><a href='User_CartList_list'>购物车</a></li><li ><a href='user/register.jsp'>注册</a></li>"}
 														</ul>
 													</div>
 												</div>
@@ -170,11 +175,14 @@
 									</div>
 									<div class="col-12 col-sm-12 col-md-5 col-lg-5">
 										<div class="header-cart-area">
+										
+										<c:if  test="${SPRING_SECURITY_CONTEXT.authentication.principal.username ne null}"> 
 											<div class="header-cart">
 												<div class="btn-group">
 													<button class="btn-link dropdown-toggle icon-cart"
 														id="minicart">
-														<i class="pe-7s-cart"></i> <span <c:if test="${cartlist.size()==0}">style="display:none"</c:if> class="count-style">${cartlist.size()}</span>
+														<i class="pe-7s-cart"></i>
+													
 													</button>
 													<div class="dropdown-menu">
 														<div class="shopping-cart-content">
@@ -206,10 +214,10 @@
 															</ul>
 															<div class="shopping-cart-total" id="head-cart-sum">
 																<h4>
-																	商品价格 :$ <span id="psum">${cartsum}</span>
+																	商品价格:<span id="psum">${cartsum}</span>
 																</h4>
 																<h4>
-																	订单价格 :$ <span id="osum">${cartsum}</span>
+																	订单价格:<span id="osum">${cartsum}</span>
 																</h4>
 															</div>
 															<div class="shopping-cart-btn">
@@ -220,6 +228,7 @@
 													</div>
 												</div>
 											</div>
+											</c:if>
 
 											<div class="header-contact media">
 												<div class="header-contact-icon mr-4">
@@ -256,8 +265,7 @@
 								<ul class="mega-container">
 									<li><a href="my-account.html" class="mega-menu-title"><h3>账户</h3></a>
 										<ul id="pagenav">
-											<li><a href="user/login.jsp">登录</a></li>
-											<li><a href="user/register.jsp">注册</a></li>
+											${SPRING_SECURITY_CONTEXT.authentication.principal.username eq null?"<li ><a href='user/login.jsp'>登录</a></li><li ><a href='user/register.jsp'>注册</a></li>":" <li ><a href='user/my-account.jsp'>我的账户</a></li><li ><a href='User_CartList_list'>购物车</a></li><li ><a href='user/register.jsp'>注册</a></li>"}
 										</ul></li>
 
 									<li><a href="#" class="mega-menu-title"><h3>功能</h3></a>
@@ -268,23 +276,7 @@
 										</ul></li>
 
 								</ul></li>
-							<!--<li><a href="shop-grid.html"><span>购物页面 </span></a>
-                                <ul>
-                                    <li><a href="shop-grid.html">Shop Grid</a></li>
-                                    <li><a href="shop-list.html">Shop List</a></li>
-                                    <li><a href="shop-right-sidebar.html">Shop Right Sidebar</a></li>
-                                    <li><a href="shop-fullwidth.html">Shop Full Width</a></li>
-                                    <li><a href="single-product.html">Single Product Page</a></li>
-                                </ul>
-                            </li>-->
-							<!--<li><a href="blog.html"><span>Blog Pages</span></a>
-                                <ul>
-                                    <li><a href="blog.html">Blog FullWidth</a></li>
-                                    <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
-                                    <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
-                                    <li><a href="blog-details.html">Blog Details</a></li>
-                                </ul>
-                            </li>-->
+						
 							<li><a href="user/about.jsp"><span>关于我们</span></a></li>
 							<li><a href="user/contact.jsp"><span>联系我们</span></a></li>
 						</ul>
@@ -295,23 +287,22 @@
 			<!-- End of Main and Mobile Navigation -->
 		</header>
 		<script>
-			var unlogin = " <li ><a href='"+"user/login.jsp"+"'>登录</a></li>"
+			/* var unlogin = " <li ><a href='"+"user/login.jsp"+"'>登录</a></li>"
 					+ " <li ><a href='"+"user/register.jsp"+"'>注册</a></li>";
 			var login = " <li ><a href='"+"user/my-account.jsp"+"'>我的账户</a></li>"
 					+ " <li ><a href='"+"User_CartList_list"+"'>购物车</a></li>"
 					+ " <li ><a href='"+"user/register.jsp"+"'>注册</a></li>";
 
-			if ("${user.name}" == "") {
+			if ("${SPRING_SECURITY_CONTEXT.authentication.principal.username}" == "") {
 				user.innerHTML = "请登录<i class='"+"fa fa-angle-down"+"'></i>";
-				minicart.style.display = "none";
 				pagenav.innerHTML=unlogin;
 			} else {
-				user.innerHTML = "${user.name}<i class='"+"fa fa-angle-down"+"'></i>";
+				user.innerHTML = " ${SPRING_SECURITY_CONTEXT.authentication.principal.username} <i class='"+"fa fa-angle-down"+"'></i>";
 				account.innerHTML = login;
 				pagenav.innerHTML=login;
-			}
-			if (window.location.pathname == "/mycart/home.jsp")
-				header.className = "header bgc-white";
+			} */
+			/* if (window.location.pathname == "/mycart/home.jsp")
+				header.className = "header bgc-white"; */
 			
 			$("#headcart").on("click","#remove",function(){
 				$(this).parents("li").fadeOut("slow");

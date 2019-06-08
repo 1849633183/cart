@@ -143,7 +143,7 @@
                                                                                     <img src="${product.productImgs[1].imgurl}" alt="Proin Lectus Ipsum" title="Proin Lectus Ipsum">
                                                                                 </a>
                                                                                 <div class="action-links">
-                                                                                    <a class="action-btn btn-cart" href="javascript:void(0)" title="加入购物车"><i class="pe-7s-cart"></i></a>
+                                                                                    <a class="action-btn btn-cart" href="javascript:void(0)" title="加入购物车" index="${st.index}"><i class="pe-7s-cart"></i></a>
                                                                                     <a class="action-btn btn-wishlist" href="#" title="Add to Wishlist"><i class="pe-7s-like"></i></a>
                                                                                     <a class="action-btn btn-compare" href="#" title="Add to Compare"><i class="pe-7s-refresh-2"></i></a>
                                                                                     <a class="action-btn btn-quickview" data-toggle="modal" data-target="#product_quick_view" href="#" title="快速查看" data-whatever="${st.index}"><i class="pe-7s-search"></i></a>
@@ -206,7 +206,6 @@ $(function(){
 })
 $("#plist").on("click",".btn-cart",function(){
 	cartadd(1,result[$(this).attr("index")]);
-    alert(result[$(this).attr("index")]);
     console.log(result[$(this).attr("index")]);
  
   });

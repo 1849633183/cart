@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*" isELIgnored="false"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-    
+
     <div class="pagination-area">
                                                 <div class="row align-items-center">
                                                     <div class="col-lg-6 col-md-6">
@@ -12,7 +12,7 @@
                                                             <li id="page" class="page-item"><a href="User_Productslist_list?page.type=${page.type}&page.start=${page.start}" class="page-link"><strong>${page.getPageIndex()}</strong></a></li>
                                                             <li <c:if test="${!page.isHasNext()}">style="display:none"</c:if> id="page" class="page-item"><a href="User_Productslist_list?page.type=${page.type}&page.start=${page.start+page.count}" class="page-link">${page.getPageIndex()+1}</a></li>
                                                             <li <c:if test="${!page.isHasNext()}">style="display:none"</c:if> id="right" class="page-item"><a href="User_Productslist_list?page.type=${page.type}&page.start=${page.start+page.count}" class="page-link"><i class="fa fa-angle-right"></i></a></li>
-                                                            <li id="doubleright" class="page-item"><a href="User_Productslist_list?page.type=${page.type}&page.start=${page.getLast()}&page.count=${page.getLastPageCount()}" class="page-link"><i class="fa fa-angle-double-right"></i>|</a></li>
+                                                            <li id="doubleright" class="page-item"><a href="User_Productslist_list?page.type=${page.type}&page.start=${page.getLast()}" class="page-link"><i class="fa fa-angle-double-right"></i>|</a></li>
                                                         </ul>
                                                     </div>
                                                     <div class="col-lg-6 col-md-6">

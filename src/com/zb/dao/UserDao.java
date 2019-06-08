@@ -15,6 +15,24 @@ import com.zb.utill.Util;
 
 public class UserDao {
 	Util util = new Util();
+	
+	public Userinfo findUserByEmail(String email) {
+		Userinfo userinfo=null;
+		try {
+			PreparedStatement preparedStatement = util.getConnection()
+					.prepareStatement("select * from users where email=?");
+			preparedStatement.setString(1, email);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				userinfo=new Userinfo(resultSet.getString("id"),resultSet.getString("name"),resultSet.getString("email"));
+			}
+		} catch (SQLException exception) {
+			exception.printStackTrace();
+			return null;
+
+		}
+		return userinfo;
+	}
 
 	public boolean checkUser(String email) {
 		try {

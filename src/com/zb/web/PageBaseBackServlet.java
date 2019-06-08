@@ -77,6 +77,7 @@ public abstract class PageBaseBackServlet extends HttpServlet {
 				redirect = m.invoke(this,request, response,page).toString();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
+				e.printStackTrace();
 				logger.info(redirect+">>>>>>>>>>>>>>>>>>>>>>>json导致空指针>>>>>>>>>>>>>>>>>>>>>>>>>>");
 			}
 			

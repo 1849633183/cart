@@ -3555,8 +3555,8 @@
             <!-- End of Newsletter Section -->
         </main>
         <!-- End of Main Content Wrapper -->
-        
 <%@include file="../include/quicklyview.jsp"%>
              <!-- Start of Footer -->
       <%@include file="../include/footer.jsp"%>
         <!-- End of Footer -->
+       

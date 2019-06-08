@@ -21,22 +21,23 @@ import net.sf.json.JSONObject;
 import servlet.ProductListServlet;
 
 @RunWith(SpringJUnit4ClassRunner.class)  //使用junit4进行测试  
-@ContextConfiguration(locations = {"classpath:applicationContext.xml"}) //加载配置文件  
+@ContextConfiguration(locations = {"classpath:applicationContext.xml","classpath:spring-security.xml"}) //加载配置文件  
 public class test {
 	@Autowired
 	ProductMapper productMapper;
 	@Autowired
-	UserMapper mapper;
+	 UserMapper mapper;
 	/*@Autowired
 	Lucene lucene;*/
 	 static Logger logger = Logger.getLogger(test.class);
 	 
 	 @Test
 	 public void test1() {
-		 try {
-			 Userinfo userinfo=mapper.findByUsername("1");
+		
+	 try {
+			 Userinfo userinfo=mapper.findByEmail("5");
 			System.out.println(userinfo);
-			System.out.println("zb5655");
+			System.out.println("ee");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -49,6 +50,7 @@ public class test {
 	public static void main(String[] args) {
 	
 		
+
 		/*// TODO Auto-generated method stub
 		  //json合并 相同的字段会被后一个覆盖
 		

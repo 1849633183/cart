@@ -44,7 +44,7 @@
                                     <div class="row">
                                         <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6 offset-lg-2 offset-xl-3">
                                             <div class="login-form mt-half">
-                                                <form id="form" action="#" method="post"  accept-charset="utf-8">
+                                                <form id="form" action="user/Userlogin.do" method="post"  accept-charset="utf-8">
                                                  <input type="hidden" name="method" value="Login">
                                                     <div class="form-group row align-items-center mb-4">
                                                         <label for="email" class="col-12 col-sm-12 col-md-4 col-form-label">邮箱</label>
@@ -62,7 +62,7 @@
                                                    
                                                     <div class="login-box mt-5 text-center">
                                                         <p><a href="#">忘记密码?</a></p>
-                                                        <button type="button" class="default-btn tiny-btn mt-4" id="login">登录</button>
+                                                        <input type="submit" class="default-btn tiny-btn mt-4" id="login" value="登录"/>
                                                     </div>
                                                     <div class="text-center mt-half pt-half top-bordered">
                                                         <p>没有账号?<a href="register.jsp">点这里创建一个</a>.</p>
@@ -84,33 +84,13 @@
             <!-- End of Newsletter Section -->
         </div>
         <!-- End of Main Content Wrapper -->
-         <script type="text/javascript">
-    $(function(){
-    	$("#login").click(
-    			function(){
-    				$.post(
-    						"User_User_Login", 
-    						$('#form').serialize(),
-    						function(result) {
-    							alert(result);
-    							if(result=="密码正确")
-    								{
-    								location.href="user/home.jsp";
-    								}
-    								else
-    									{
-    							alert(result);
-    							console.log(result);
-    							}
-    						}
-    					);
-    				
-    			});
-    })
-    </script>
 
             <!-- Start of Footer -->
       <%@include file="../include/footer.jsp"%>
         <!-- End of Footer -->
+         <script type="text/javascript">
+    if("${info}"!='')
+    	toast("${info}");
+    </script>
 
       
